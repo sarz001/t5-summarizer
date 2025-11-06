@@ -1,0 +1,4 @@
+on git bash
+cd /d/t5_Summarizer
+source .venv/Scripts/activate
+python -m uvicorn app.main:app --reload --port 8000
