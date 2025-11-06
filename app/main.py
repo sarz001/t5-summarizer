@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from app.summarizer import summarize
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 
 app = FastAPI(title="T5 Text Summarizer API")
 
@@ -25,3 +26,7 @@ def summarize_text(req: Request):
 @app.get("/health")
 def health():
     return {"status": "ok"}
+
+@app.get("/")
+def home():
+    return FileResponse("static/index.html")
