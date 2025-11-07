@@ -30,3 +30,16 @@ def health():
 @app.get("/")
 def home():
     return FileResponse("static/index.html")
+
+# app/main.py
+import threading, time, requests
+
+def keep_alive():
+    while True:
+        try:
+            requests.get("https://t5-summarizer.onrender.com/health")
+        except:
+            pass
+        time.sleep(600)  # ping every 10 min
+
+threading.Thread(target=keep_alive, daemon=True).start()
